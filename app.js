@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
-
 const user = require("./routes/user");
 
 app.use("/api/users", user);
