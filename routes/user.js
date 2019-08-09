@@ -11,7 +11,7 @@ router.post("/register", (req, res) => {
       res.status(200).json({ success: true, userData: savedUser });
     })
     .catch(err => {
-      res.status(400).json({ success: false });
+      res.status(400).json({ success: false, error: err });
     });
 });
 

@@ -17,11 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
+
 const user = require("./routes/user");
 
 app.use("/api/users", user);
-
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
