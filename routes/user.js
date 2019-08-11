@@ -4,11 +4,13 @@ const bcrypt = require("bcrypt");
 
 const User = require("../models/User");
 
+const { auth } = require("../middleware/auth");
+
 router.post("/register", (req, res) => {
   const newUser = new User(req.body);
   bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, salt) => {
-      newUser.password = salt;
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
       newUser
         .save()
         .then(savedUser => {
@@ -44,6 +46,10 @@ router.post("/login", (req, res) => {
       }
     });
   });
+});
+
+router.get("/auth", auth, function(req,res) {
+  res.status(200).json(req.user);
 });
 
 module.exports = router;
