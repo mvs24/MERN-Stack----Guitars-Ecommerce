@@ -48,7 +48,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/api/users/logout", auth, (req, res) => {
+router.get("/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user.id }, { token: "" }, (err, doc) => {
     if (err) return res.status(400).json({ success: false });
     return res.status(200).json({ success: true });
