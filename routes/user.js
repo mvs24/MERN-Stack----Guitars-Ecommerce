@@ -48,8 +48,24 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/auth", auth, function(req,res) {
-  res.status(200).json(req.user);
+router.get("/api/users/logout", auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user.id }, { token: "" }, (err, doc) => {
+    if (err) return res.status(400).json({ success: false });
+    return res.status(200).json({ success: true });
+  });
+});
+
+router.get("/auth", auth, function(req, res) {
+  res.status(200).json({
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    cart: req.user.cart,
+    history: req.user.history
+  });
 });
 
 module.exports = router;
