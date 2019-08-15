@@ -6,13 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 
 import rootReducer from "./reducers";
 
-const store = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
+ const store = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
+
 
 let app = (
   <Provider

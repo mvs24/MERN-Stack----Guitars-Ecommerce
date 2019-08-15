@@ -26,9 +26,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
-      return res
-        .status(404)
-        .json({ loginSuccess: false, message: "Email not found" });
+      return res.json({ loginSuccess: false, message: "Email not found" });
     }
     user.comparePassword(req.body.password, (err, matched) => {
       if (matched) {
@@ -38,11 +36,11 @@ router.post("/login", (req, res) => {
             .cookie("w_auth", user.token)
             .status(200)
             .json({
-              success: true
+              loginSuccess: true
             });
         });
       } else {
-        return res.json({ success: false, message: "Invalid Password" });
+        return res.json({ loginSuccess: false, message: "Invalid Password" });
       }
     });
   });

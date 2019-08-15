@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import FormField from "../utils/Form/FormField";
+import { update, generateData, isFormValid } from "../utils/Form/formActions";
+import { loginUser } from "../../actions/userActions";
 
 class Login extends Component {
   state = {
@@ -42,9 +45,33 @@ class Login extends Component {
     }
   };
 
-  submitHandler = e => {};
+  submitHandler = e => {
+    e.preventDefault();
+    let dataToSubmit = generateData(this.state.formdata, "login");
+    let formValid = isFormValid(this.state.formdata, "login");
+    if (formValid) {
+      this.props.dispatch(loginUser(dataToSubmit)).then(res => {
+    
+       
+        if (!res.payload.loginSuccess) {
+          this.setState({ formError: true });
+        } else {
+          this.props.history.push("/dashboard");
+        }
+      });
+    } else {
+      this.setState({ formError: true });
+    }
+  };
 
-  updateForm = el => {};
+  updateForm = el => {
+    const newFormdata = update(el, this.state.formdata, "login");
+
+    this.setState({
+      formError: false,
+      formdata: newFormdata
+    });
+  };
 
   render() {
     return (
@@ -55,14 +82,25 @@ class Login extends Component {
             formdata={this.state.formdata.email}
             change={element => this.updateForm(element)}
           />
+          <FormField
+            id={"password"}
+            formdata={this.state.formdata.password}
+            change={element => this.updateForm(element)}
+          />
+          {this.state.formError ? (
+            <div className="error_label">Please check your data</div>
+          ) : null}
+          <button onClick={this.submitHandler}>Log In</button>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  return {};
-};
+// const mapStateToProps = state => {
+//   return {
+//     user: state.user
+//   };
+// };
 
-export default connect()(Login);
+export default connect()(withRouter(Login));
