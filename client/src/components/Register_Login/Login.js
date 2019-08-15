@@ -56,7 +56,7 @@ class Login extends Component {
         if (!res.payload.loginSuccess) {
           this.setState({ formError: true });
         } else {
-          this.props.history.push("/dashboard");
+          this.props.history.push("/user/dashboard");
         }
       });
     } else {
