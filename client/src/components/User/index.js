@@ -2,7 +2,7 @@ import React from "react";
 import UserLayout from "../../hoc/User";
 import Button from '../utils/Button'
 
-export default function UserDashboard() {
+export default function UserDashboard({user}) {
   return (
     <div>
       <UserLayout>
@@ -10,9 +10,9 @@ export default function UserDashboard() {
           <div className="user_nfo_panel">
             <h1>User Info</h1>
             <div>
-                <span>Name</span>
-                <span>Lastname</span>
-                <span>Email</span>
+                <span>{user.userData.name}</span>
+                <span>{user.userData.lastname}</span>
+                <span>{user.userData.email}</span>
 
             </div>
             <Button 
