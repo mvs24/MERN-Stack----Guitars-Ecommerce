@@ -7,6 +7,8 @@ import {
   getProductsByArrival
 } from "../../actions/productActions";
 
+import CardBlock from '../utils/CardBlock'
+
 class Home extends Component {
   componentDidMount() {
     this.props.dispatch(getProductsBySell());
@@ -16,7 +18,12 @@ class Home extends Component {
     return (
       <div>
         <HomeSlider />
+        <CardBlock
+          list={this.props.products.bySell}
+          title="Best Selling Guitars"
+        />
         <HomePromotions />
+        <CardBlock list={this.props.products.byArrival} title="New Arrivals" />
       </div>
     );
   }

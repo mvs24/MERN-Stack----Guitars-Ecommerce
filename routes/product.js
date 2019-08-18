@@ -55,7 +55,7 @@ router.get("/articles", (req, res) => {
     .limit(limit)
     .exec((err, articles) => {
       if (err) return res.status(400).json({ success: false, err });
-      res.status(200).json({ articles });
+      res.send(articles)
     });
 });
 
