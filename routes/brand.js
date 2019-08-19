@@ -25,10 +25,7 @@ router.post("/brand", auth, admin, (req, res) => {
 router.get("/brands", (req, res) => {
   Brand.find({})
     .then(brands => {
-      res.status(200).json({
-        success: true,
-        brands
-      });
+      res.send(brands)
     })
     .catch(err => {
       res.status(400).json({

@@ -5,10 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import Collapse from "@material-ui/core/Collapse";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import faAngleDown from "@fortawesome/fontawesome-free-solid/faAngleDown";
 import faAngleUp from "@fortawesome/fontawesome-free-solid/faAngleUp";
+import Collapse from "@material-ui/core/Collapse";
 
 class CollapseCheckbox extends Component {
   state = {
@@ -29,9 +30,17 @@ class CollapseCheckbox extends Component {
     });
   };
 
-  handleAngle=()=>{
-      this.state.open ?  : null
-  }
+  handleAngle = () =>
+    this.state.open ? (
+      <FontAwesomeIcon className="icon" icon={faAngleUp} />
+    ) : (
+      <FontAwesomeIcon className="icon" icon={faAngleDown} />
+    );
+
+  renderList = () =>
+    this.props.list.brands
+      ? this.props.list.brands.map(list => <ListItem />)
+      : null;
 
   render() {
     return (
@@ -41,12 +50,17 @@ class CollapseCheckbox extends Component {
             style={{ padding: "10px 23px 10px 0" }}
             onClick={this.handleClick}
           >
-              <ListItemText 
-              className='collapse_title'
+            <ListItemText
+              className="collapse_title"
               primary={this.props.title}
-              />
+            />
             {this.handleAngle()}
           </ListItem>
+          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {this.renderList()}
+            </List>
+          </Collapse>
         </List>
       </div>
     );
