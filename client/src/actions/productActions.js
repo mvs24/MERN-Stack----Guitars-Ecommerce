@@ -1,8 +1,12 @@
 import axios from "axios";
-import { GET_PRODUCTS_BY_SELL, GET_PRODUCTS_BY_ARRIVALS } from "./types";
+import {
+  GET_PRODUCTS_BY_SELL,
+  GET_BRANDS,
+  GET_WOODS,
+  GET_PRODUCTS_BY_ARRIVALS
+} from "./types";
 
 import { PRODUCT_SERVER } from "../components/utils/helper";
-
 
 export const getProductsBySell = () => {
   const request = axios
@@ -23,3 +27,19 @@ export const getProductsByArrival = () => {
     payload: request
   };
 };
+
+export const getBrands = () => {
+  const request = axios.get(`${PRODUCT_SERVER}/brands`).then(res => res.data);
+  return {
+    type: GET_BRANDS,
+    payload: request
+  };
+};
+export const getWoods = () => {
+  const request = axios.get(`${PRODUCT_SERVER}/woods`).then(res => res.data);
+  return {
+    type: GET_WOODS,
+    payload: request
+  };
+};
+ 

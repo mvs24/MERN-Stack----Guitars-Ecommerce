@@ -26,7 +26,7 @@ router.get("/brands", (req, res) => {
   Brand.find({})
     .then(brands => {
       res.status(200).json({
-        succes: true,
+        success: true,
         brands
       });
     })

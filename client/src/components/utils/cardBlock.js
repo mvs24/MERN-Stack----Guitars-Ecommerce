@@ -1,8 +1,9 @@
 import React from "react";
+import Card from "./Card";
 
 const CardBlock = props => {
   const renderCards = () =>
-    props.list ? props.list.map((card, i) => <div>'card'</div>) : null;
+    props.list ? props.list.map((card, i) => <Card key={i} {...card} />) : null;
   return (
     <div className="card_block">
       <div className="container">
