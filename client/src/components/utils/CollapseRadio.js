@@ -13,7 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 export default class CollapseRadio extends Component {
   state = {
     open: false,
-    value: 0
+    value: "0"
   };
   componentDidMount() {
     if (this.props.initState) {
@@ -36,28 +36,46 @@ export default class CollapseRadio extends Component {
       <FontAwesomeIcon className="icon" icon={faAngleDown} />
     );
 
+  handleChange = e => {
+    this.props.handleFilters(e.target.value);
+    this.setState({ value: e.target.value });
+  };
+
+  renderList = () =>
+    this.props.list
+      ? this.props.list.map(value => (
+          <FormControlLabel
+            key={value._id}
+            value={`${value._id}`}
+            control={<Radio />}
+            label={value.name}
+          />
+        ))
+      : null;
+
   render() {
     return (
-        <List style={{ borderBottom: "1px solid #dbdbdb" }}>
-          <ListItem
-            style={{ padding: "10px 23px 10px 0" }}
-            onClick={this.handleClick}
-          >
-            <ListItemText
-              className="collapse_title"
-              primary={this.props.title}
-            />
-            {this.handleAngle()}
-          </ListItem>
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-            <ListItemText
-              className="collapse_title"
-              primary={this.props.title}
-            />
-            </List>
-          </Collapse>
-        </List>
-    )
+      <List style={{ borderBottom: "1px solid #dbdbdb" }}>
+        <ListItem
+          style={{ padding: "10px 23px 10px 0" }}
+          onClick={this.handleClick}
+        >
+          <ListItemText className="collapse_title" primary={this.props.title} />
+          {this.handleAngle()}
+        </ListItem>
+        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <RadioGroup
+              aria-label="prices"
+              name="prices"
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              {this.renderList()}
+            </RadioGroup>
+          </List>
+        </Collapse>
+      </List>
+    );
   }
 }
