@@ -37,6 +37,27 @@ export default class CollapseRadio extends Component {
     );
 
   render() {
-    return <div />;
+    return (
+        <List style={{ borderBottom: "1px solid #dbdbdb" }}>
+          <ListItem
+            style={{ padding: "10px 23px 10px 0" }}
+            onClick={this.handleClick}
+          >
+            <ListItemText
+              className="collapse_title"
+              primary={this.props.title}
+            />
+            {this.handleAngle()}
+          </ListItem>
+          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+            <ListItemText
+              className="collapse_title"
+              primary={this.props.title}
+            />
+            </List>
+          </Collapse>
+        </List>
+    )
   }
 }
