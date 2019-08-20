@@ -37,9 +37,38 @@ class CollapseCheckbox extends Component {
       <FontAwesomeIcon className="icon" icon={faAngleDown} />
     );
 
+  handleToggle = id => {
+    const checked = this.state.checked;
+    const currentIndex = checked.indexOf(id);
+
+    const newChecked = [...checked];
+    if (currentIndex === -1) {
+      newChecked.push(id);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    this.setState(
+      {
+        checked: newChecked
+      },
+      () => this.props.handleFilters(newChecked)
+    );
+  };
+
   renderList = () =>
-    this.props.list.brands
-      ? this.props.list.brands.map(list => <ListItem />)
+    this.props.list
+      ? this.props.list.map(list => (
+          <ListItem style={{ padding: "10px" }} key={list._id}>
+            <ListItemText primary={list.name} />
+            <ListItemSecondaryAction>
+              <Checkbox
+                onChange={() => this.handleToggle(list._id)}
+                checked={this.state.checked.indexOf(list._id) !== -1}
+                color="primary"
+              />
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))
       : null;
 
   render() {
