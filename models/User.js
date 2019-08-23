@@ -65,6 +65,7 @@ UserSchema.methods.generateToken = function(callback) {
     });
 };
 
+
 UserSchema.statics.findByToken = function(token, cb) {
   let user = this;
   jwt.verify(token, process.env.SECRET, (err, decode) => {

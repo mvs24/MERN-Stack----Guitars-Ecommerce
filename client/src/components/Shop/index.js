@@ -55,9 +55,9 @@ class Shop extends Component {
     this.setState({ filters: newFilters });
   };
 
+
   showFilteredResults = filters => {
-    this.props
-      .dispatch(getProductsToShop(0, this.state.limit, filters))
+    this.props.dispatch(getProductsToShop(0, this.state.limit, filters))
       .then(() => {
         this.setState({ skip: 0 });
       });
