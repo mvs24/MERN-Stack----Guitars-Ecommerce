@@ -61,11 +61,12 @@ a {
   font-size: 40px;
   color: #999592;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 41px;
 }
 
 .not_found_container {
   font-size: 70px;
+  
   text-align: center;
   padding-top: 70px;
   color: #dddddd;
