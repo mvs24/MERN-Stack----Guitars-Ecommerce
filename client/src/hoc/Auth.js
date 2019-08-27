@@ -9,6 +9,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
       loading: true
     };
 
+    
     componentDidMount() {
       this.props.dispatch(auth()).then(res => {
         let user = this.props.user.userData;
