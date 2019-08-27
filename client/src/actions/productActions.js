@@ -50,6 +50,7 @@ export const getProductsToShop = (skip, limit, filters = [], previousState = [])
     skip,
     filters
   };
+  
   const request = axios
     .post(`${PRODUCT_SERVER}/shop`, data)
     .then(res => {
