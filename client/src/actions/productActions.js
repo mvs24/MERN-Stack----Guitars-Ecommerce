@@ -44,21 +44,23 @@ export const getWoods = () => {
   };
 };
 
-export const getProductsToShop = (skip, limit, filters = [], previousState = []) => {
+export const getProductsToShop = (
+  skip,
+  limit,
+  filters = [],
+  previousState = []
+) => {
   const data = {
     limit,
     skip,
     filters
   };
-  
-  const request = axios
-    .post(`${PRODUCT_SERVER}/shop`, data)
-    .then(res => {
-      return {
-        size: res.data.size,
-        articles: res.data.articles
-      }
-    });
+  const request = axios.post(`${PRODUCT_SERVER}/shop`, data).then(res => {
+    return {
+      size: res.data.size,
+      articles: res.data.articles
+    };
+  });
 
   return {
     type: GET_PRODUCTS_TO_SHOP,
