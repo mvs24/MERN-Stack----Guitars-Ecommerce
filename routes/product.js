@@ -62,7 +62,6 @@ router.post("/shop", (req, res) => {
     }
   }
 
-  
   Product.find(findArgs)
     .populate("brand")
     .populate("wood")

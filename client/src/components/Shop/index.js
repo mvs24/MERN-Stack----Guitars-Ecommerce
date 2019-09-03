@@ -9,6 +9,7 @@ import {
 import CollapseCheckbox from "../utils/CollapseCheckbox";
 import CollapseRadio from "../utils/CollapseRadio";
 import { frets, price } from "../utils/Form/fixedCategories";
+import LoadMore from "./LoadMore";
 
 class Shop extends Component {
   state = {
@@ -55,9 +56,9 @@ class Shop extends Component {
     this.setState({ filters: newFilters });
   };
 
-
   showFilteredResults = filters => {
-    this.props.dispatch(getProductsToShop(0, this.state.limit, filters))
+    this.props
+      .dispatch(getProductsToShop(0, this.state.limit, filters))
       .then(() => {
         this.setState({ skip: 0 });
       });
@@ -96,7 +97,22 @@ class Shop extends Component {
                 list={price}
               />
             </div>
-            <div className="right" />
+            <div className="right">
+              <div className="shop_options">
+                <div className="shop_grids clear">
+                  grids
+                </div>
+              </div>
+              <div className="">
+              <LoadMore 
+              grid={this.state.grid}
+              limit={this.state.limit}
+              size={products.toShopSize}
+              products={products.toShop}
+              loadMore={()=>console.log("load")}
+              />
+              </div>
+            </div>
           </div>
         </div>
       </div>
