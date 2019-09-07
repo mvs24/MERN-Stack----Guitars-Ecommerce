@@ -76,7 +76,6 @@ class CollapseCheckbox extends Component {
       <div className="collapse_items_wrapper">
         <List style={{ borderBottom: "1px solid #dbdbdb" }}>
           <ListItem
-          
             style={{ padding: "10px 23px 10px 0" }}
             onClick={this.handleClick}
           >
