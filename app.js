@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
 
 require("dotenv").config();
 
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }).then(() => {
+mongoose.connect('mongodb://localhost:27017/guitars', { useNewUrlParser: true }).then(() => {
   console.log("MongoDB connected");
 });
 
