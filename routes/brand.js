@@ -22,6 +22,7 @@ router.post("/brand", auth, admin, (req, res) => {
     });
 });
 
+
 router.get("/brands", (req, res) => {
   Brand.find({})
     .then(brands => {
