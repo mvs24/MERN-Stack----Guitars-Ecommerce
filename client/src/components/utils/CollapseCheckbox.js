@@ -70,7 +70,6 @@ class CollapseCheckbox extends Component {
           </ListItem>
         ))
       : null;
-
   render() {
     return (
       <div className="collapse_items_wrapper">
