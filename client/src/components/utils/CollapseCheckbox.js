@@ -72,6 +72,7 @@ class CollapseCheckbox extends Component {
       : null;
   render() {
     return (
+      
       <div className="collapse_items_wrapper">
         <List style={{ borderBottom: "1px solid #dbdbdb" }}>
           <ListItem
