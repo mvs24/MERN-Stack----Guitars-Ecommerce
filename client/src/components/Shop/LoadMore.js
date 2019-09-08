@@ -3,7 +3,8 @@ import React from 'react'
 function LoadMore() {
     return (
         <div>
-            load more btn
+            load more button
+
         </div>
     )
 }
