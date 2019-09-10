@@ -5,6 +5,7 @@ const Product = require("../models/Product");
 const { auth } = require("../middleware/auth");
 const { admin } = require("../middleware/admin");
 
+
 router.post("/article", auth, admin, (req, res) => {
   const newProduct = new Product(req.body);
   newProduct

@@ -11,6 +11,8 @@ import faAngleDown from "@fortawesome/fontawesome-free-solid/faAngleDown";
 import faAngleUp from "@fortawesome/fontawesome-free-solid/faAngleUp";
 import Collapse from "@material-ui/core/Collapse";
 
+
+
 class CollapseCheckbox extends Component {
   state = {
     open: false,
@@ -30,8 +32,7 @@ class CollapseCheckbox extends Component {
     });
   };
 
-  handleAngle = () =>
-    this.state.open ? (
+  handleAngle = () =>this.state.open ? (
       <FontAwesomeIcon className="icon" icon={faAngleUp} />
     ) : (
       <FontAwesomeIcon className="icon" icon={faAngleDown} />

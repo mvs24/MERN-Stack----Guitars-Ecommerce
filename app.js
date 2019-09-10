@@ -8,7 +8,8 @@ mongoose.Promise = global.Promise;
 
 require("dotenv").config();
 
-mongoose.connect('mongodb://localhost:27017/guitars', { useNewUrlParser: true }).then(() => {
+
+mongoose.connect('mongodb+srv://project:O89mEWCO1rS65SYy@ecommerce-ywz0u.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => {
   console.log("MongoDB connected");
 });
 
